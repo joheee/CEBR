@@ -2,6 +2,7 @@ import 'package:cebr/config/variable.dart';
 import 'package:cebr/custom/text_component.dart';
 import 'package:cebr/custom/banner_component.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,11 +12,39 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final binusianEmail = TextEditingController();
+  final password = TextEditingController();
+  String errorMessage = '';
+  @override
+  void dispose() {
+    binusianEmail.dispose();
+    password.dispose();
+    super.dispose();
+  }
+
+  void handleLogin() async {
+    String binusianEmailText = binusianEmail.text;
+    String passwordText = password.text;
+
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: binusianEmailText, password: passwordText);
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        errorMessage = 'Invalid Credentials!';
+      });
+      return;
+    }
+    setState(() {
+      errorMessage = 'Success login!';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        resizeToAvoidBottomInset: false,
+          resizeToAvoidBottomInset: false,
           backgroundColor: primaryColor,
           body: Stack(
             children: [
@@ -39,24 +68,28 @@ class _LoginPageState extends State<LoginPage> {
                             const SizedBox(
                               height: 32,
                             ),
-                            const TextField(
-                              decoration: InputDecoration(
+                            TextField(
+                              controller: binusianEmail,
+                              decoration: const InputDecoration(
                                   labelText: 'Binusian Email',
                                   border: OutlineInputBorder()),
                             ),
                             const SizedBox(height: 14),
-                            const TextField(
+                            TextField(
+                              controller: password,
                               obscureText: true,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                   labelText: 'Password',
                                   border: OutlineInputBorder()),
                             ),
                             const SizedBox(height: 14),
-                            textTemplate('pass beda', Colors.red, 12.0,
+                            textTemplate(errorMessage, Colors.red, 12.0,
                                 'PoppinsRegular'),
                             const SizedBox(height: 14),
                             ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  handleLogin();
+                                },
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor: secondaryColor,
                                     minimumSize: const Size.fromHeight(50)),
