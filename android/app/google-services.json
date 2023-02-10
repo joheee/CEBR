@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "994425544757",
+    "project_id": "cebr-704d0",
+    "storage_bucket": "cebr-704d0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:994425544757:android:b180650079a12f247dd17c",
+        "android_client_info": {
+          "package_name": "com.example.cebr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "994425544757-mb11q2pheg7okpn62cq0c6uvnh0ui136.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_KhyG1t0mniH9Qp2G6-3h9sJeMQHZuBo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "994425544757-mb11q2pheg7okpn62cq0c6uvnh0ui136.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
