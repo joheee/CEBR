@@ -20,15 +20,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: splashScreen(),
+        body: cebrSplashScreen(),
       ),
     );
   }
-}
 
-Widget splashScreen() => AnimatedSplashScreen(
-    splash: ceirCircle(),
-    splashIconSize: 270.0,
-    duration: 2000,
-    backgroundColor: secondaryColor,
-    nextScreen: const LoginPage());
+  AnimatedSplashScreen cebrSplashScreen() {
+    return AnimatedSplashScreen(
+        splash: ceirCircle(),
+        splashIconSize: 270.0,
+        duration: 2000,
+        backgroundColor: secondaryColor,
+        nextScreen: const MaterialApp(home: Scaffold(body: LoginPage())));
+  }
+}

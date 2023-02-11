@@ -1,4 +1,7 @@
 import 'package:cebr/config/variable.dart';
+import 'package:cebr/custom/notification_component.dart';
+import 'package:cebr/custom/snack_bar/content_type.dart';
+import 'package:cebr/custom/snack_bar/awesome_snackbar.dart';
 import 'package:cebr/custom/text_component.dart';
 import 'package:cebr/custom/banner_component.dart';
 import 'package:flutter/material.dart';
@@ -30,14 +33,9 @@ class _LoginPageState extends State<LoginPage> {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: binusianEmailText, password: passwordText);
     } on FirebaseAuthException catch (e) {
-      setState(() {
-        errorMessage = 'Invalid Credentials!';
-      });
+      notificationSnackBar(context, 'oh snap!', 'invalid credentials :)', ContentType.failure);
       return;
     }
-    setState(() {
-      errorMessage = 'Success login!';
-    });
   }
 
   @override
@@ -83,8 +81,6 @@ class _LoginPageState extends State<LoginPage> {
                                   border: OutlineInputBorder()),
                             ),
                             const SizedBox(height: 14),
-                            textTemplate(errorMessage, Colors.red, 12.0,
-                                'PoppinsRegular'),
                             const SizedBox(height: 14),
                             ElevatedButton(
                                 onPressed: () {
