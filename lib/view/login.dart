@@ -1,7 +1,6 @@
 import 'package:cebr/config/variable.dart';
 import 'package:cebr/custom/notification_component.dart';
 import 'package:cebr/custom/snack_bar/content_type.dart';
-import 'package:cebr/custom/snack_bar/awesome_snackbar.dart';
 import 'package:cebr/custom/text_component.dart';
 import 'package:cebr/custom/banner_component.dart';
 import 'package:flutter/material.dart';
@@ -32,10 +31,13 @@ class _LoginPageState extends State<LoginPage> {
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: binusianEmailText, password: passwordText);
+    // ignore: unused_catch_clause
     } on FirebaseAuthException catch (e) {
       notificationSnackBar(context, 'oh snap!', 'invalid credentials :)', ContentType.failure);
       return;
     }
+    // ignore: use_build_context_synchronously
+    notificationSnackBar(context, 'success login!', 'hola user!', ContentType.success);
   }
 
   @override
