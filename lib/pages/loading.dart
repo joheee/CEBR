@@ -13,6 +13,7 @@ class LoadingPage extends StatefulWidget {
 class _LoadingPageState extends State<LoadingPage> {
   @override
   void initState() {
+    Future.delayed(const Duration(seconds: 3));
     handleCurrentUser(context);
     super.initState();
   }

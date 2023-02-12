@@ -8,6 +8,7 @@ import 'package:cebr/pages/home.dart';
 import 'package:cebr/pages/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 
 void handleLogin(
     BuildContext context, String binusianEmailText, String passwordText) async {
@@ -19,13 +20,11 @@ void handleLogin(
         context, 'oh snap!', 'invalid credentials :)', ContentType.failure);
     return;
   }
-  notificationSnackBar(
-      context, 'success login!', 'hola user!', ContentType.success);
+  notificationSnackBar(context, 'success login!', 'hola user!', ContentType.success);
   handleCurrentUser(context);
 }
 
-void handleCurrentUser(BuildContext context) async {
-  await Future.delayed(const Duration(seconds: 3));
+void handleCurrentUser(BuildContext context) {
   FirebaseAuth.instance.authStateChanges().listen((User? user) {
     if (user != null) {
       final currUser = firestoreInstance.collection('users').doc(user.email);
@@ -35,10 +34,10 @@ void handleCurrentUser(BuildContext context) async {
         LoggedUser.currRole = data!['role'];
         LoggedUser.currFullName = data['fullname'];
         LoggedUser.currStudentId = data['student_id'];
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomePage()));
+        Navigator.of(context).push(PageTransition(child: const MaterialApp(home: Scaffold(body: HomePage())), type: PageTransitionType.fade));
       });
     } else {
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>const MaterialApp(home: Scaffold(body: LoginPage()))));
+      Navigator.of(context).push(PageTransition(child: const MaterialApp(home: Scaffold(body: LoginPage())), type: PageTransitionType.fade));
     }
   });
 }
