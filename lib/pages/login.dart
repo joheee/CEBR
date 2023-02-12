@@ -1,10 +1,10 @@
 import 'package:cebr/config/variable.dart';
-import 'package:cebr/custom/notification_component.dart';
-import 'package:cebr/custom/snack_bar/content_type.dart';
+import 'package:cebr/controller/login_controller.dart';
+import 'package:cebr/custom/header_component.dart';
+import 'package:cebr/custom/input_component.dart';
 import 'package:cebr/custom/text_component.dart';
 import 'package:cebr/custom/banner_component.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -16,7 +16,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final binusianEmail = TextEditingController();
   final password = TextEditingController();
-  String errorMessage = '';
+
   @override
   void dispose() {
     binusianEmail.dispose();
@@ -24,20 +24,9 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  void handleLogin() async {
-    String binusianEmailText = binusianEmail.text;
-    String passwordText = password.text;
-
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: binusianEmailText, password: passwordText);
-    // ignore: unused_catch_clause
-    } on FirebaseAuthException catch (e) {
-      notificationSnackBar(context, 'oh snap!', 'invalid credentials :)', ContentType.failure);
-      return;
-    }
-    // ignore: use_build_context_synchronously
-    notificationSnackBar(context, 'success login!', 'hola user!', ContentType.success);
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
@@ -48,12 +37,12 @@ class _LoginPageState extends State<LoginPage> {
           backgroundColor: primaryColor,
           body: Stack(
             children: [
-              Positioned(child: loginHeader()),
+              Positioned(child: loginHeader(ceirText())),
               Positioned(
                 child: Center(
                     child: SizedBox(
                   child: Card(
-                      margin: const EdgeInsets.all(31.0),
+                      margin: const EdgeInsets.all(30.0),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8)),
                       child: Container(
@@ -65,28 +54,15 @@ class _LoginPageState extends State<LoginPage> {
                           children: [
                             textTemplate(
                                 'Sign In', Colors.black, 16.0, 'PoppinsBold'),
-                            const SizedBox(
-                              height: 32,
-                            ),
-                            TextField(
-                              controller: binusianEmail,
-                              decoration: const InputDecoration(
-                                  labelText: 'Binusian Email',
-                                  border: OutlineInputBorder()),
-                            ),
+                            const SizedBox(height: 30),
+                            textFieldInput(
+                                binusianEmail, 'Binusian Email', false),
                             const SizedBox(height: 14),
-                            TextField(
-                              controller: password,
-                              obscureText: true,
-                              decoration: const InputDecoration(
-                                  labelText: 'Password',
-                                  border: OutlineInputBorder()),
-                            ),
-                            const SizedBox(height: 14),
+                            textFieldInput(password, 'Password', true),
                             const SizedBox(height: 14),
                             ElevatedButton(
                                 onPressed: () {
-                                  handleLogin();
+                                  handleLogin(context, binusianEmail.text,password.text);
                                 },
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor: secondaryColor,
@@ -103,15 +79,3 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
-
-Widget loginHeader() => Container(
-      height: 300,
-      decoration: BoxDecoration(
-          color: secondaryColor,
-          borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(12.0),
-              bottomRight: Radius.circular(12.0))),
-      child: Center(
-        child: ceirText(),
-      ),
-    );
