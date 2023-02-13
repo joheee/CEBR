@@ -34,10 +34,10 @@ void handleCurrentUser(BuildContext context) {
         LoggedUser.currRole = data!['role'];
         LoggedUser.currFullName = data['fullname'];
         LoggedUser.currStudentId = data['student_id'];
-        Navigator.of(context).push(PageTransition(child: const MaterialApp(home: Scaffold(body: HomePage())), type: PageTransitionType.fade));
+        Navigator.of(context).pushReplacement(PageTransition(child: const MaterialApp(home: Scaffold(body: HomePage())), type: PageTransitionType.fade));
       });
     } else {
-      Navigator.of(context).push(PageTransition(child: const MaterialApp(home: Scaffold(body: LoginPage())), type: PageTransitionType.fade));
+      Navigator.of(context).pushReplacement(PageTransition(child: const MaterialApp(home: Scaffold(body: LoginPage())), type: PageTransitionType.fade));
     }
   });
 }

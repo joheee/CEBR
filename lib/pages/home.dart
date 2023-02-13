@@ -1,5 +1,6 @@
 import 'package:cebr/config/logged_user.dart';
 import 'package:cebr/config/variable.dart';
+import 'package:cebr/widget/home_card.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
@@ -11,9 +12,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: Stack(
-          children: const [],
-        ),
+        body: const HomeCardWidget(),
         bottomNavigationBar: Container(
           padding: const EdgeInsets.all(10.0),
           decoration: BoxDecoration(color: primaryColor, boxShadow: [
@@ -64,3 +63,4 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
