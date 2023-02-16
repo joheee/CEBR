@@ -1,3 +1,4 @@
+import 'package:cebr/config/variable.dart';
 import 'package:flutter/material.dart';
 
 Widget textFieldInput(TextEditingController controller, String labelText, bool obscureText) =>
@@ -5,5 +6,5 @@ Widget textFieldInput(TextEditingController controller, String labelText, bool o
       controller: controller,
       obscureText: obscureText,
       decoration: InputDecoration(
-          labelText: labelText, border: const OutlineInputBorder()),
+        labelText: labelText, border: const OutlineInputBorder()),
     );

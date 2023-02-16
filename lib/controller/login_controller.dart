@@ -20,7 +20,8 @@ void handleLogin(
         context, 'oh snap!', 'invalid credentials :)', ContentType.failure);
     return;
   }
-  notificationSnackBar(context, 'success login!', 'hola user!', ContentType.success);
+  notificationSnackBar(
+      context, 'success login!', 'hola user!', ContentType.success);
   handleCurrentUser(context);
 }
 
@@ -34,10 +35,13 @@ void handleCurrentUser(BuildContext context) {
         LoggedUser.currRole = data!['role'];
         LoggedUser.currFullName = data['fullname'];
         LoggedUser.currStudentId = data['student_id'];
-        Navigator.of(context).pushReplacement(PageTransition(child: const MaterialApp(home: Scaffold(body: HomePage())), type: PageTransitionType.fade));
+        Navigator.of(context).push(PageTransition(
+            child: const HomePage(), type: PageTransitionType.fade));
       });
     } else {
-      Navigator.of(context).pushReplacement(PageTransition(child: const MaterialApp(home: Scaffold(body: LoginPage())), type: PageTransitionType.fade));
+      Navigator.of(context).push(PageTransition(
+          child: const MaterialApp(home: Scaffold(body: LoginPage())),
+          type: PageTransitionType.fade));
     }
   });
 }
