@@ -30,7 +30,7 @@ class _OtherCardWidgetState extends State<OtherCardWidget> {
                 icon: LineIcons.inbox,
                 text: 'Notification Log',
                 offset: 10.0,
-                color: fontColor.withOpacity(0.5),
+                iconColor: fontColor.withOpacity(0.5),
                 fontSize: fontSize,
                 fontColor: fontColor.withOpacity(0.6),
               ),
@@ -42,7 +42,7 @@ class _OtherCardWidgetState extends State<OtherCardWidget> {
                 icon: LineIcons.archive,
                 text: 'Log Room',
                 offset: 10.0,
-                color: fontColor.withOpacity(0.5),
+                iconColor: fontColor.withOpacity(0.5),
                 fontSize: fontSize,
                 fontColor: fontColor.withOpacity(0.6),
               ),
@@ -54,7 +54,7 @@ class _OtherCardWidgetState extends State<OtherCardWidget> {
                 icon: LineIcons.questionCircle,
                 text: 'FaQ',
                 offset: 10.0,
-                color: fontColor.withOpacity(0.5),
+                iconColor: fontColor.withOpacity(0.5),
                 fontSize: fontSize,
                 fontColor: fontColor.withOpacity(0.6),
               ),
@@ -65,13 +65,15 @@ class _OtherCardWidgetState extends State<OtherCardWidget> {
           ElevatedButton(
               onPressed: () {
                 authInstance.signOut().then((value) {
+
                   Navigator.of(context).pushReplacement(PageTransition(
-                  child: const MaterialApp(home: Scaffold(body: LoginPage())),
-                  type: PageTransitionType.fade));
+                      child:
+                          const MaterialApp(home: Scaffold(body: LoginPage())),
+                      type: PageTransitionType.fade));
                 });
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.redAccent,
+                backgroundColor: redAccentColor,
                 minimumSize: const Size.fromHeight(50),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0)),

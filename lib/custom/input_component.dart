@@ -1,4 +1,3 @@
-import 'package:cebr/config/variable.dart';
 import 'package:flutter/material.dart';
 
 Widget textFieldInput(TextEditingController controller, String labelText, bool obscureText) =>
