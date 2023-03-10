@@ -27,4 +27,4 @@ Widget cebrSplashScreen() => AnimatedSplashScreen(
       backgroundColor: secondaryColor,
       splashTransition: SplashTransition.fadeTransition,
       pageTransitionType: PageTransitionType.fade,
-      nextScreen: const MaterialApp(home: Scaffold(body: LoadingPage())));
+      nextScreen: const MaterialApp(debugShowCheckedModeBanner: false,home: Scaffold(body: LoadingPage())));

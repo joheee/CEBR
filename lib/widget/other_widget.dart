@@ -1,6 +1,7 @@
 import 'package:cebr/config/variable.dart';
 import 'package:cebr/custom/text_component.dart';
 import 'package:cebr/firebase/firebase_util.dart';
+import 'package:cebr/pages/faq.dart';
 import 'package:cebr/pages/login.dart';
 import 'package:cebr/widget/home_card.dart';
 import 'package:flutter/material.dart';
@@ -17,9 +18,14 @@ const double fontSize = 15.0;
 
 class _OtherCardWidgetState extends State<OtherCardWidget> {
   void handleFaQ() {
-    print('test');
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const FaqPage()));
   }
+  void handleNotificationLog() {
 
+  }
+  void handleLogRoom() {
+
+  }
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -35,7 +41,7 @@ class _OtherCardWidgetState extends State<OtherCardWidget> {
                 fontColor: fontColor.withOpacity(0.6),
               ),
               function: () {
-                handleFaQ();
+                handleNotificationLog();
               }),
           OtherButtonWidget(
               textWithIconWidget: TextWithIconWidget(
@@ -47,7 +53,7 @@ class _OtherCardWidgetState extends State<OtherCardWidget> {
                 fontColor: fontColor.withOpacity(0.6),
               ),
               function: () {
-                handleFaQ();
+                handleLogRoom();
               }),
           OtherButtonWidget(
               textWithIconWidget: TextWithIconWidget(
@@ -68,7 +74,7 @@ class _OtherCardWidgetState extends State<OtherCardWidget> {
 
                   Navigator.of(context).pushReplacement(PageTransition(
                       child:
-                          const MaterialApp(home: Scaffold(body: LoginPage())),
+                          const MaterialApp(debugShowCheckedModeBanner: false,home: Scaffold(body: LoginPage())),
                       type: PageTransitionType.fade));
                 });
               },

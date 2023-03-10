@@ -29,15 +29,16 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
           appBar: HomeTab.displayAppBar[currIndex],
           body: PageView(
             controller: homePageControler,
-            children: [
-              const HomeCardWidget(),
+            children: const [
+              HomeCardWidget(),
               NotificationCardWidget(),
-              const OtherCardWidget(),
-              const Text('fourth tab'),
+              OtherCardWidget(),
+              Text('fourth tab'),
             ],
             onPageChanged: (value) {
               setState(() {

@@ -136,7 +136,7 @@ class PhotoCardWidget extends StatelessWidget {
       width: width,
       child: ClipRRect(
           borderRadius: BorderRadius.circular(borderRadius),
-          child: Image.network(url, fit: BoxFit.cover)),
+          child: Image.network(url, fit: BoxFit.cover, width: width, height: height,)),
     );
   }
 }

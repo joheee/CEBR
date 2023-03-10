@@ -1,4 +1,3 @@
-import 'package:cebr/config/home_tab.dart';
 import 'package:cebr/config/logged_user.dart';
 import 'package:cebr/config/variable.dart';
 import 'package:cebr/controller/login_controller.dart';
@@ -30,7 +29,6 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     LoggedUser.currEmail = LoggedUser.currFullName =
         LoggedUser.currRole = LoggedUser.currStudentId = '';
-    print('here at initstate');
     super.initState();
   }
 

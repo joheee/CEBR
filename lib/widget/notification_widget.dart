@@ -129,7 +129,31 @@ class _EachCardNotificationWidgetState
                 isOpened == false
                     ? const SizedBox()
                     : TableNotificationCardWidget(
-                        room: widget.room, currDate: widget.currDate),
+                        room: widget.room, 
+                        currDate: widget.currDate
+                      ),
+                isOpened == false 
+                    ? const SizedBox() 
+                    : Container(
+                      margin: const EdgeInsets.only(bottom: 11.0),
+                      child: ElevatedButton(
+                          onPressed: () {
+                          },
+                          style: ElevatedButton.styleFrom(backgroundColor: secondaryColor,minimumSize: const Size.fromHeight(50)),
+                          child: textTemplate('accept', Colors.white, 12.0,'PoppinsSemiBold')
+                        ),
+                    ),
+                isOpened == false 
+                    ? const SizedBox() 
+                    : Container(
+                      margin: const EdgeInsets.only(bottom: 11.0),
+                      child: ElevatedButton(
+                          onPressed: () {
+                          },
+                          style: ElevatedButton.styleFrom(backgroundColor: redAccentColor,minimumSize: const Size.fromHeight(50)),
+                          child: textTemplate('decline', Colors.white, 12.0,'PoppinsSemiBold')
+                        ),
+                    ),
                 isOpened == false
                     ? const SizedBox()
                     : FooterNotificationCardWidget(
@@ -261,7 +285,7 @@ class HeaderNotificationCardWidget extends StatelessWidget {
         Expanded(
             child: Container(
               constraints: const BoxConstraints(
-                maxHeight: 60.0
+                maxHeight: 80.0
               ),
               child: Column
               (

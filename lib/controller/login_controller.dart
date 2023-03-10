@@ -40,7 +40,8 @@ void handleCurrentUser(BuildContext context) {
       });
     } else {
       Navigator.of(context).pushReplacement(PageTransition(
-          child: const MaterialApp(home: Scaffold(body: LoginPage())),
+      
+          child: const MaterialApp(debugShowCheckedModeBanner: false,home: Scaffold(body: LoginPage())),
           type: PageTransitionType.fade));
     }
   });
